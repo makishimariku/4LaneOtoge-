@@ -41,6 +41,7 @@ public class NotesManager : MonoBehaviour
 
     void OnEnable()
     {
+        _notesSpeed = GManager.instance.noteSpeed;
         noteNum = 0;                    //総ノーツ数を0に
         songName = "魔法の喫茶店";      //プレイする曲名を取得(仮)
         Load(songName);                 //Load()を呼び出す
@@ -59,7 +60,7 @@ public class NotesManager : MonoBehaviour
         {
             float kankaku = 60 / (inputJson.BPM * (float)inputJson.notes[i].LPB);
             float beatSec = kankaku * (float)inputJson.notes[i].LPB;
-            float time = (beatSec * inputJson.notes[i].num / (float)inputJson.notes[i].LPB) + inputJson.offset + 0.01f;
+            float time = (beatSec * inputJson.notes[i].num / (float)inputJson.notes[i].LPB) + inputJson.offset * 0.01f;
 
             NotesTime.Add(time);
             LaneNum.Add(inputJson.notes[i].block);
